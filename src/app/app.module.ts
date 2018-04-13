@@ -6,8 +6,13 @@ import { RouterModule } from '@angular/router';
 // AppComponent is in CoreModule but used here for bootstrapping
 import { AppComponent } from './core/containers/app';
 
+// import other Modules
+import { AuthModule } from './auth/auth.module';
+
 // module routes definition
 import { routes } from './routes';
+
+
 
 @NgModule({
   declarations: [
@@ -16,6 +21,7 @@ import { routes } from './routes';
     BrowserModule,
     CoreModule,
     RouterModule.forRoot(routes, { useHash: true }),
+    AuthModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
