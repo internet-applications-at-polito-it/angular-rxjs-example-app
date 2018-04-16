@@ -8,8 +8,9 @@ import { Authenticate } from '../models/user.model';
         <form #ngF="ngForm" (ngSubmit)="submit(ngF)">
               <input type="text" placeholder="username" name="username" ngModel>
               <input type="password" placeholder="password" name="password" ngModel>
-            <button type="submit">Login</button>
+            <button [disabled]="pending" type="submit">Login</button>
         </form>
+        <p>{{errorMessage}}
   `,
 })
 export class LoginFormComponent {
@@ -23,6 +24,8 @@ export class LoginFormComponent {
     }
   }
   */
+
+  @Input() pending: boolean | false;
 
   // @Input() errorMessage: string | null;
 

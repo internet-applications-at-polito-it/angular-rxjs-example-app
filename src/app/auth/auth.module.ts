@@ -6,9 +6,12 @@ import { FormsModule } from '@angular/forms';
 
 import { LoginPageComponent } from './containers/login-page.component';
 import { LoginFormComponent } from './components/login-form.component';
+import { AuthService } from './services/auth.service';
 
-
-const COMPONENTS = [ LoginPageComponent, LoginFormComponent ];
+const COMPONENTS = [
+  LoginPageComponent,
+  LoginFormComponent,
+];
 
 @NgModule({
   imports: [
@@ -20,6 +23,7 @@ const COMPONENTS = [ LoginPageComponent, LoginFormComponent ];
   ],
   declarations: COMPONENTS,
   exports: COMPONENTS,
+  providers: [AuthService],
 })
 export class AuthModule {
 
