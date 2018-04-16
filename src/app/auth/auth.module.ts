@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { LoginPageComponent } from './containers/login-page.component';
 import { LoginFormComponent } from './components/login-form.component';
 import { AuthService } from './services/auth.service';
+import { AuthGuard } from './services/auth-guard.service';
 
 const COMPONENTS = [
   LoginPageComponent,
@@ -23,7 +24,7 @@ const COMPONENTS = [
   ],
   declarations: COMPONENTS,
   exports: COMPONENTS,
-  providers: [AuthService],
+  providers: [AuthService, AuthGuard],
 })
 export class AuthModule {
 
