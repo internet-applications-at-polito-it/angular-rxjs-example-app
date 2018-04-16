@@ -4,6 +4,7 @@ import { CanActivate } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { map, take } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
+import { AuthService } from './auth.service';
 
 // import * as Auth from '../actions/auth';
 // import * as fromAuth from '../reducers';
@@ -11,14 +12,18 @@ import { of } from 'rxjs/observable/of';
 @Injectable()
 export class AuthGuard implements CanActivate {
   constructor(
+    public authService: AuthService,
     // private store: Store<fromAuth.State>
   ) {}
 
   canActivate(): Observable<boolean> {
-    let ret = false;
-    ret = (Math.floor(Math.random() * 2) === 0);
-    console.log('Is authenticated: ' + ret);
-    return of(ret);
+    if (this.authService.isAuthenticated()) {
+      // this.router.navigate(['login']);   // inject router
+      return of(false);
+    } else {
+      return of(true);
+    }
+    // return of(ret);
     /*
     this.store.pipe(
       select(fromAuth.getLoggedIn),

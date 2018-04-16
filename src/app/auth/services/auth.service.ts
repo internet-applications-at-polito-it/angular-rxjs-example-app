@@ -9,8 +9,13 @@ import { Observable } from 'rxjs/observable';
 
 @Injectable()
 export class AuthService {
+  user: User = null;
 
   constructor() {}
+
+  public isAuthenticated(): boolean {
+    return !!this.user;
+  }
 
   login({ username, password }: Authenticate): Observable<User> {
     /**
@@ -22,7 +27,8 @@ export class AuthService {
     }
 
     // force 5s delay
-    const sourceOne = of({ name: 'User' }) ;
+    this.user = { name: 'User' };
+    const sourceOne = of(this.user) ;
     return sourceOne.pipe(delay(5000));
   }
 
