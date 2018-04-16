@@ -14,6 +14,7 @@ export class AuthService {
   constructor() {}
 
   public isAuthenticated(): boolean {
+    console.log('Authenticated as: ' + this.user);
     return !!this.user;
   }
 
