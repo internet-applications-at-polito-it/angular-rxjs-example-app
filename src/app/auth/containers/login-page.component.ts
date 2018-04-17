@@ -3,6 +3,10 @@ import { Authenticate } from '../models/user.model';
 import { AuthService } from '../services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import { Store } from '@ngrx/store';
+import * as fromAuth from '../auth.reducer';
+import * as Auth from '../actions/auth.action';
+
 @Component({
   selector: 'app-login-page',
   template: `
@@ -21,6 +25,7 @@ export class LoginPageComponent implements OnInit {
     private authenticationService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
+    private store: Store<fromAuth.AuthState>,
   ) {
 
   }
@@ -31,8 +36,10 @@ export class LoginPageComponent implements OnInit {
   }
 
   onSubmit($ev: Authenticate) {
-    this.pending = true;
     console.dir($ev);
+    this.store.dispatch(new Auth.Login($ev));
+    /*
+    this.pending = true;
     console.log('Form subitted values: ' + JSON.stringify($ev));
     this.authenticationService.login($ev)
       .subscribe(
@@ -46,6 +53,7 @@ export class LoginPageComponent implements OnInit {
           this.pending = false;
         }
       );
+    */
   }
 
 }

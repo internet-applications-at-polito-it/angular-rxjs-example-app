@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { CoreModule } from './core/core.module';
 import { RouterModule } from '@angular/router';
 
+
+import { StoreModule } from '@ngrx/store';
+
 // AppComponent is in CoreModule but used here for bootstrapping
 import { AppComponent } from './core/containers/app';
 
@@ -11,6 +14,7 @@ import { AuthModule } from './auth/auth.module';
 
 // module routes definition
 import { routes } from './routes';
+import { reducers } from './app.reducer';
 
 
 
@@ -21,6 +25,7 @@ import { routes } from './routes';
     BrowserModule,
     CoreModule,
     RouterModule.forRoot(routes, { useHash: true }),
+    StoreModule.forRoot(reducers),
     AuthModule,
   ],
   providers: [],
