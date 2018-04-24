@@ -4,25 +4,35 @@ import { User } from './models/user.model';
 import { createSelector, createFeatureSelector } from '@ngrx/store';
 
 export interface AuthState {
-  loggedIn: string;
+  loggedIn: boolean;
   user: User | null;
 }
 
 export const initialState: AuthState = {
-  loggedIn: 'none',
+  loggedIn: false,
   user: null,
 };
 
 export function reducer(state = initialState, action: AuthActions): AuthState {
   let retState = state;
   switch (action.type) {
+
     case AuthActionTypes.Login: {
        retState = { // properties with same name are overwritten
         ...state,
-        loggedIn:  action.payload.username,
-        user: { name: action.payload.username}, // dummy authentication
+        // loggedIn:  action.payload.username,
+        // user: { name: action.payload.username}, // dummy authentication
       };
     }
+    break;
+
+    case AuthActionTypes.LoginSuccess: {
+      retState = { // properties with same name are overwritten
+       ...state,
+       loggedIn:  true,
+       user: action.payload.user, // dummy authentication
+     };
+   }
   }
   console.log('AuthReducer from ' + JSON.stringify(state) + ' to ' + JSON.stringify(retState));
   return retState;

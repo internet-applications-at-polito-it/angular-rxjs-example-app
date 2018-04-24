@@ -15,7 +15,7 @@ import * as fromAuth from '../../auth/auth.reducer';
   `,
 })
 export class AppComponent {
-  loggedIn$: Observable<string>;
+  loggedIn$: Observable<boolean>;
 
   constructor(private store: Store<fromAuth.AuthState>) {
     this.loggedIn$ = this.store.pipe(select(fromAuth.getLoggedIn));

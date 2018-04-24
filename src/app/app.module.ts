@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CoreModule } from './core/core.module';
 import { RouterModule } from '@angular/router';
-
+import { EffectsModule } from '@ngrx/effects';
 
 import { StoreModule } from '@ngrx/store';
 
@@ -17,7 +17,6 @@ import { routes } from './routes';
 import { reducers } from './app.reducer';
 
 
-
 @NgModule({
   declarations: [
   ],
@@ -25,8 +24,10 @@ import { reducers } from './app.reducer';
     BrowserModule,
     CoreModule,
     RouterModule.forRoot(routes, { useHash: true }),
+            // .provideStore
     StoreModule.forRoot(reducers),
     AuthModule,
+    EffectsModule.forRoot([]),
   ],
   providers: [],
   bootstrap: [AppComponent]
