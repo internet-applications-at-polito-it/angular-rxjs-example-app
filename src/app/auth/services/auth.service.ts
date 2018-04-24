@@ -28,7 +28,7 @@ export class AuthService {
     }
 
     // force 5s delay
-    this.user = { name: 'User' };
+    this.user = { name: 'my user' };
     const sourceOne = of(this.user) ;
     return sourceOne.pipe(delay(5000));
   }

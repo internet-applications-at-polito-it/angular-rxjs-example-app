@@ -77,14 +77,12 @@ export const getLoggedIn = createSelector(
 );
 
 export const getLoginPageError = createSelector(
-  getAuthState,
-  (state: AuthState) => state.error
+  getAuthState, (state: AuthState) => state.error
 );
 export const getLoginPagePending = createSelector(
-  getAuthState,
-  (state: AuthState) => state.pending
+  getAuthState, (state: AuthState) => state.pending
 );
-
+export const getUser = createSelector( getAuthState, (state: AuthState) => state.user);
 
 /*
 createSelector(
