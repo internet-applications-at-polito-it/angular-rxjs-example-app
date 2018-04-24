@@ -3,7 +3,7 @@ import { Authenticate } from '../models/user.model';
 import { AuthService } from '../services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import * as fromAuth from '../auth.reducer';
 import * as Auth from '../actions/auth.action';
 
@@ -13,12 +13,15 @@ import * as Auth from '../actions/auth.action';
     <h2>Login form</h2>
     <app-login-form
       (submitted)=onSubmit($event)
-      [pending] = "pending"
+      [pending] = "pending$ | async"
+      [errorMessage]="error$ | async"
     ></app-login-form>
   `
 })
 export class LoginPageComponent implements OnInit {
-  pending = false;
+  pending$ = this.store.pipe(select(fromAuth.getLoginPagePending));
+  error$ = this.store.pipe(select(fromAuth.getLoginPageError));
+
   returnUrl: string;
 
   constructor (
@@ -37,6 +40,7 @@ export class LoginPageComponent implements OnInit {
 
   onSubmit($ev: Authenticate) {
     console.dir($ev);
+
     this.store.dispatch(new Auth.Login($ev));
     /*
     this.pending = true;

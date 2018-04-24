@@ -10,7 +10,7 @@ import { Authenticate } from '../models/user.model';
               <input type="password" placeholder="password" name="password" ngModel>
             <button [disabled]="pending" type="submit">Login</button>
         </form>
-        <p>{{errorMessage}}
+        <p>Error message: | {{errorMessage}} |
   `,
 })
 export class LoginFormComponent {
@@ -26,8 +26,7 @@ export class LoginFormComponent {
   */
 
   @Input() pending: boolean | false;
-
-  // @Input() errorMessage: string | null;
+  @Input() errorMessage: string | null;
 
   // @Output() submitted = new EventEmitter<Authenticate>();
   @Output() submitted = new EventEmitter<Authenticate>();
